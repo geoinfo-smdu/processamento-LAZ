@@ -13,10 +13,28 @@ Nosso objetivo inicial é processar todos os mais de 5500 arquivos de nuvem de p
 
 Temos inicialmente duas possibilidades de fazer isso através de script. Utilizando o [LasTools](https://github.com/LAStools/LAStools) ou o [PDAL](https://github.com/PDAL/PDAL). As duas possibilidades permitem geração de scripts e vamos utilizar nesse projeto uma pasta para testar cada projeto LasTolls e PDAL, onde é possível encontrar cada script específico.
 
-Para fazer essa comparação vamos utilizar 23 arquivos LAZ e TIFF que correspondem aos aerofotolevantamentos de 2017 dos SCMs correspondentes.
+Para programar e executar o scrip iremos utilizar o PowerShell que tem se mostrado bastante interessante e sobretudo nos dá a possibilidade de executar tarefas em paralelo e em diversaa máquinas de maneira relativamente simples.
 
-A comparação vai ser quantitativa em relação ao tempo gasto no processmento e qualitativa analisando o resultado final do arquivo gerado.
+## Passo-a-passo
 
-## Conclusões
+É importante nesse passo a passo levarmos em conta algumas primissas:
 
-Assim que executar
+* Diversos processamentos podem estar ocorrendo ao mesmo tempo em máquinas distintas na mesma rede
+* Os resultados precisam ser autitáveis
+* Os processo deve prever pausas e recomeços do ponto onde parou
+
+Portanto temos a seguinte lista seriada em um processo prévio:
+
+* Criar uma lista de arquivos MDS Laz
+* Criar uma lista de arquivos MDT Laz
+
+E cada um dos processos:
+
+* Iterar sobre os arquivos Laz, contidos na lista
+* Executar os processamentos para cada arquivo
+* Gravar log
+* Excluir arquivo processado da lista
+
+## Escalabilidade
+
+Vamos sempre começar os testes com apenas um arquivo, depois para alguns, depois para muitos para então quantificar e estimar as capacidades necessárias para então executar o script e processar os resultados finais.
