@@ -1,3 +1,2 @@
 env.ps1
-arquivos/MDSs.csv
-arquivos/MDTs.csv
+arquivos/*.csv
